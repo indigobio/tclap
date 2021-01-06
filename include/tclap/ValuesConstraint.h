@@ -48,7 +48,7 @@ class ValuesConstraint : public Constraint<T>
 		 * Constructor. 
 		 * \param allowed - vector of allowed values. 
 		 */
-		ValuesConstraint(std::vector<T>& allowed);	
+		ValuesConstraint(std::initializer_list<T> allowed);
 
 		/**
 		 * Virtual destructor.
@@ -87,10 +87,10 @@ class ValuesConstraint : public Constraint<T>
 };
 
 template<class T>
-ValuesConstraint<T>::ValuesConstraint(std::vector<T>& allowed)
+ValuesConstraint<T>::ValuesConstraint(std::initializer_list<T> allowed)
 : _allowed(allowed),
   _typeDesc("")
-{ 
+{
     for ( unsigned int i = 0; i < _allowed.size(); i++ )
     {
 
@@ -104,7 +104,7 @@ ValuesConstraint<T>::ValuesConstraint(std::vector<T>& allowed)
 
         os << _allowed[i];
 
-        std::string temp( os.str() ); 
+        std::string temp( os.str() );
 
         if ( i > 0 )
 			_typeDesc += "|";

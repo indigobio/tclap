@@ -1,3 +1,7 @@
+2019-10-10 12:02 Erik Snider
+        * ValueArgs print their defaults when applicable.
+        * Use initializer_list for ValuesArg and ValuesConstraint constructors.
+
 2017-12-26 14:30 macbishop
 	* Bugfix release for 1.2 branch (v1.2.2):
 	    - Fixed a few typos

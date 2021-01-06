@@ -223,6 +223,12 @@ class ValueArg : public Arg
         T& getValue() ;
 
         /**
+         * Returns a simple string representation of the argument.
+         * Primarily for debugging.
+         */
+        virtual std::string getDescription() const;
+
+        /**
          * Specialization of shortID.
          * \param val - value to be used.
          */
@@ -374,6 +380,29 @@ bool ValueArg<T>::processArg(int *i, std::vector<std::string>& args)
     }	
     else
 		return false;
+}
+
+/**
+ * Implementation of toString.
+ */
+template<class T>
+inline std::string ValueArg<T>::getDescription() const
+{
+  if (_required) {
+    return Arg::getDescription();
+  } else {
+    return Arg::getDescription() + " (default: " + std::to_string(_value) + ")";
+  }
+}
+
+template<>
+inline std::string ValueArg<std::string>::getDescription() const
+{
+  if (_required) {
+    return Arg::getDescription();
+  } else {
+    return Arg::getDescription() + " (default: " + _value + ")";
+  }
 }
 
 /**
