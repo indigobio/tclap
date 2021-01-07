@@ -391,17 +391,9 @@ inline std::string ValueArg<T>::getDescription() const
   if (_required) {
     return Arg::getDescription();
   } else {
-    return Arg::getDescription() + " (default: " + std::to_string(_value) + ")";
-  }
-}
-
-template<>
-inline std::string ValueArg<std::string>::getDescription() const
-{
-  if (_required) {
-    return Arg::getDescription();
-  } else {
-    return Arg::getDescription() + " (default: " + _value + ")";
+    std::stringstream ss;
+    ss << Arg::getDescription() << " (default: " << _value << ")";
+    return ss.str();
   }
 }
 
